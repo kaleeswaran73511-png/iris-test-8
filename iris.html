@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>IRIS AI Assistant</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Background Effects -->
+    <div class="background-grid"></div>
+    <div class="scan-line"></div>
+
+    <!-- Main Application -->
+    <div class="app-container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+            <div class="logo-section">
+                <div class="logo-circle">
+                    <span>◉</span>
+                </div>
+
+                <h1>IRIS</h1>
+                <p>AI SYSTEM</p>
+            </div>
+
+            <nav class="navigation">
+
+                <button class="nav-item active" data-section="home">
+                    <span>⌂</span>
+                    <span>Home</span>
+                </button>
+
+                <button class="nav-item" data-section="chat">
+                    <span>◈</span>
+                    <span>IRIS Chat</span>
+                </button>
+
+                <button class="nav-item" data-section="voice">
+                    <span>🎙</span>
+                    <span>Voice Control</span>
+                </button>
+
+                <button class="nav-item" data-section="status">
+                    <span>▣</span>
+                    <span>System Status</span>
+                </button>
+
+                <button class="nav-item" data-section="tasks">
+                    <span>✓</span>
+                    <span>Tasks</span>
+                </button>
+
+                <button class="nav-item" data-section="reminders">
+                    <span>⏰</span>
+                    <span>Reminders</span>
+                </button>
+
+                <button class="nav-item" data-section="applications">
+                    <span>▦</span>
+                    <span>Applications</span>
+                </button>
+
+                <button class="nav-item" data-section="settings">
+                    <span>⚙</span>
+                    <span>Settings</span>
+                </button>
+
+            </nav>
+
+            <div class="sidebar-footer">
+                <p>IRIS CORE v1.0</p>
+                <span id="connection">Checking connection...</span>
+            </div>
+
+        </aside>
+
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Header -->
+            <header class="top-header">
+
+                <div>
+                    <p class="system-label">ARTIFICIAL INTELLIGENCE SYSTEM</p>
+                    <h2 id="pageTitle">Welcome Back, User</h2>
+                </div>
+
+                <div class="header-status">
+                    <span class="status-dot"></span>
+                    <span id="backendStatus">SYSTEM CHECKING</span>
+                </div>
+
+            </header>
+
+
+            <!-- Home Section -->
+            <section id="home" class="page-section active-section">
+
+                <div class="welcome-card">
+
+                    <div class="welcome-text">
+                        <p class="small-title">PERSONAL AI ASSISTANT</p>
+
+                        <h1>
+                            Hello, I am
+                            <span>IRIS</span>
+                        </h1>
+
+                        <p>
+                            Your intelligent virtual assistant is ready
+                            to process commands and assist you.
+                        </p>
+
+                        <button class="primary-button" onclick="activateChat()">
+                            START CONVERSATION
+                        </button>
+                    </div>
+
+                    <div class="hologram-container">
+                        <img
+                            src="hologram.jpeg"
+                            alt="IRIS Hologram"
+                            class="hologram-image"
+                        >
+                    </div>
+
+                </div>
+
+
+                <!-- System Status Cards -->
+                <div class="section-heading">
+                    <h2>System Monitoring</h2>
+                    <span>LIVE DATA</span>
+                </div>
+
+                <div class="status-grid">
+
+                    <div class="status-card">
+                        <div class="card-header">
+                            <span>CPU USAGE</span>
+                            <span>▣</span>
+                        </div>
+
+                        <h2 id="cpu">0%</h2>
+
+                        <div class="progress-bar">
+                            <div id="cpuBar" class="progress-fill"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="status-card">
+                        <div class="card-header">
+                            <span>RAM USAGE</span>
+                            <span>▤</span>
+                        </div>
+
+                        <h2 id="ram">0%</h2>
+
+                        <div class="progress-bar">
+                            <div id="ramBar" class="progress-fill"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="status-card">
+                        <div class="card-header">
+                            <span>BATTERY</span>
+                            <span>▰</span>
+                        </div>
+
+                        <h2 id="battery">0%</h2>
+
+                        <div class="progress-bar">
+                            <div id="batteryBar" class="progress-fill"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="status-card">
+                        <div class="card-header">
+                            <span>NETWORK</span>
+                            <span>⌁</span>
+                        </div>
+
+                        <h2 id="network">ONLINE</h2>
+
+                        <div class="progress-bar">
+                            <div id="networkBar" class="progress-fill"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- Quick Commands -->
+                <div class="section-heading">
+                    <h2>Quick Commands</h2>
+                    <span>SHORTCUTS</span>
+                </div>
+
+                <div class="quick-command-grid">
+
+                    <button onclick="runQuickCommand('What time is it?')">
+                        🕒 Current Time
+                    </button>
+
+                    <button onclick="runQuickCommand('Tell me a joke')">
+                        🤖 Tell Me a Joke
+                    </button>
+
+                    <button onclick="runQuickCommand('Show system status')">
+                        💻 System Status
+                    </button>
+
+                    <button onclick="runQuickCommand('Hello IRIS')">
+                        👋 Say Hello
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- Chat Section -->
+            <section id="chat" class="page-section">
+
+                <div class="section-heading">
+                    <h2>IRIS Chat Interface</h2>
+                    <span>AI COMMUNICATION</span>
+                </div>
+
+                <div class="chat-panel">
+
+                    <div class="chat-header">
+                        <span class="status-dot"></span>
+                        IRIS ONLINE
+                    </div>
+
+                    <div id="chatMessages" class="chat-messages">
+
+                        <div class="message iris-message">
+                            <strong>IRIS:</strong>
+                            <p>Hello! How can I help you?</p>
+                        </div>
+
+                    </div>
+
+                    <div class="chat-input-area">
+
+                        <input
+                            type="text"
+                            id="commandInput"
+                            placeholder="Type your command..."
+                            autocomplete="off"
+                        >
+
+                        <button id="sendButton">
+                            SEND
+                        </button>
+
+                        <button id="micButton" title="Voice Command">
+                            🎙
+                        </button>
+
+                    </div>
+
+                    <p id="voiceStatus" class="voice-status">
+                        Voice system ready
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- Voice Section -->
+            <section id="voice" class="page-section">
+
+                <div class="section-heading">
+                    <h2>Voice Control</h2>
+                    <span>SPEECH RECOGNITION</span>
+                </div>
+
+                <div class="voice-panel">
+
+                    <div class="voice-circle">
+                        🎙
+                    </div>
+
+                    <h2>Voice Command System</h2>
+
+                    <p>
+                        Press the microphone button and speak your command.
+                    </p>
+
+                    <button class="primary-button" id="voiceStartButton">
+                        START LISTENING
+                    </button>
+
+                    <p id="voiceResult">
+                        Waiting for voice input...
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- System Status Section -->
+            <section id="status" class="page-section">
+
+                <div class="section-heading">
+                    <h2>System Status</h2>
+                    <span>REAL-TIME MONITORING</span>
+                </div>
+
+                <div class="status-details">
+
+                    <div class="detail-row">
+                        <span>CPU Usage</span>
+                        <strong id="statusCpu">0%</strong>
+                    </div>
+
+                    <div class="detail-row">
+                        <span>RAM Usage</span>
+                        <strong id="statusRam">0%</strong>
+                    </div>
+
+                    <div class="detail-row">
+                        <span>Battery Level</span>
+                        <strong id="statusBattery">0%</strong>
+                    </div>
+
+                    <div class="detail-row">
+                        <span>Network</span>
+                        <strong id="statusNetwork">Checking...</strong>
+                    </div>
+
+                    <div class="detail-row">
+                        <span>Backend</span>
+                        <strong id="statusBackend">Checking...</strong>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Tasks Section -->
+            <section id="tasks" class="page-section">
+
+                <div class="section-heading">
+                    <h2>Task Manager</h2>
+                    <span>PERSONAL TASKS</span>
+                </div>
+
+                <div class="task-panel">
+
+                    <input
+                        type="text"
+                        id="taskInput"
+                        placeholder="Enter a new task..."
+                    >
+
+                    <button onclick="addTask()">
+                        ADD TASK
+                    </button>
+
+                    <ul id="taskList"></ul>
+
+                </div>
+
+            </section>
+
+
+            <!-- Reminders Section -->
+            <section id="reminders" class="page-section">
+
+                <div class="section-heading">
+                    <h2>Reminders</h2>
+                    <span>REMINDER SYSTEM</span>
+                </div>
+
+                <div class="task-panel">
+
+                    <input
+                        type="text"
+                        id="reminderInput"
+                        placeholder="Enter reminder..."
+                    >
+
+                    <button onclick="addReminder()">
+                        ADD REMINDER
+                    </button>
+
+                    <ul id="reminderList"></ul>
+
+                </div>
+
+            </section>
+
+
+            <!-- Applications Section -->
+            <section id="applications" class="page-section">
+
+                <div class="section-heading">
+                    <h2>Applications</h2>
+                    <span>APPLICATION CONTROL</span>
+                </div>
+
+                <div class="application-grid">
+
+                    <button onclick="runQuickCommand('Open YouTube')">
+                        ▶ YouTube
+                    </button>
+
+                    <button onclick="runQuickCommand('Open Google')">
+                        🌐 Google
+                    </button>
+
+                    <button onclick="runQuickCommand('Open Gmail')">
+                        ✉ Gmail
+                    </button>
+
+                    <button onclick="runQuickCommand('Open GitHub')">
+                        ◉ GitHub
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- Settings Section -->
+            <section id="settings" class="page-section">
+
+                <div class="section-heading">
+                    <h2>System Settings</h2>
+                    <span>CONFIGURATION</span>
+                </div>
+
+                <div class="settings-panel">
+
+                    <label for="assistantName">
+                        Assistant Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="assistantName"
+                        value="IRIS"
+                    >
+
+                    <button onclick="saveSettings()">
+                        SAVE SETTINGS
+                    </button>
+
+                    <p id="settingsMessage"></p>
+
+                </div>
+
+            </section>
+
+
+            <!-- Command Terminal -->
+            <section class="terminal-section">
+
+                <div class="terminal-header">
+                    <span>COMMAND TERMINAL</span>
+                    <span class="terminal-indicator">● LIVE</span>
+                </div>
+
+                <div id="logBox" class="terminal-log">
+                    <p>> IRIS system initialized...</p>
+                    <p>> Waiting for command...</p>
+                </div>
+
+            </section>
+
+
+            <!-- AI Reply -->
+            <div class="reply-panel">
+
+                <div class="reply-title">
+                    IRIS RESPONSE
+                </div>
+
+                <div id="reply">
+                    Ready to assist you.
+                </div>
+
+            </div>
+
+
+            <!-- Footer -->
+            <footer class="main-footer">
+                <p>IRIS AI SYSTEM © 2026</p>
+                <p>SECURE • INTELLIGENT • RESPONSIVE</p>
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <!-- JavaScript Files -->
+    <script src="api.js"></script>
+    <script src="app.js"></script>
+
+
+    <!-- Navigation and Basic Functions -->
+    <script>
+
+        const navItems = document.querySelectorAll(".nav-item");
+        const sections = document.querySelectorAll(".page-section");
+        const pageTitle = document.getElementById("pageTitle");
+
+
+        navItems.forEach(item => {
+
+            item.addEventListener("click", () => {
+
+                const targetSection = item.getAttribute("data-section");
+
+                navItems.forEach(nav => {
+                    nav.classList.remove("active");
+                });
+
+                item.classList.add("active");
+
+                sections.forEach(section => {
+                    section.classList.remove("active-section");
+                });
+
+                const target = document.getElementById(targetSection);
+
+                if (target) {
+                    target.classList.add("active-section");
+                }
+
+                const sectionName = item.innerText.trim();
+
+                pageTitle.innerText = sectionName;
+
+            });
+
+        });
+
+
+        function activateChat() {
+
+            document.querySelector('[data-section="chat"]').click();
+
+            setTimeout(() => {
+                document.getElementById("commandInput").focus();
+            }, 200);
+
+        }
+
+
+        function runQuickCommand(command) {
+
+            const input = document.getElementById("commandInput");
+
+            input.value = command;
+
+            activateChat();
+
+            const sendButton = document.getElementById("sendButton");
+
+            if (sendButton) {
+                sendButton.click();
+            }
+
+        }
+
+
+        function addTask() {
+
+            const input = document.getElementById("taskInput");
+            const list = document.getElementById("taskList");
+
+            const task = input.value.trim();
+
+            if (task === "") {
+                return;
+            }
+
+            const item = document.createElement("li");
+
+            item.innerHTML = `
+                <span>${task}</span>
+                <button onclick="this.parentElement.remove()">Delete</button>
+            `;
+
+            list.appendChild(item);
+
+            input.value = "";
+
+        }
+
+
+        function addReminder() {
+
+            const input = document.getElementById("reminderInput");
+            const list = document.getElementById("reminderList");
+
+            const reminder = input.value.trim();
+
+            if (reminder === "") {
+                return;
+            }
+
+            const item = document.createElement("li");
+
+            item.innerHTML = `
+                <span>${reminder}</span>
+                <button onclick="this.parentElement.remove()">Delete</button>
+            `;
+
+            list.appendChild(item);
+
+            input.value = "";
+
+        }
+
+
+        function saveSettings() {
+
+            const assistantName =
+                document.getElementById("assistantName").value;
+
+            localStorage.setItem("assistantName", assistantName);
+
+            document.getElementById("settingsMessage").innerText =
+                "Settings saved successfully.";
+
+        }
+
+
+        // Update status elements if api.js provides values
+        function updateExtraStatus(cpu, ram, battery, network) {
+
+            const statusCpu = document.getElementById("statusCpu");
+            const statusRam = document.getElementById("statusRam");
+            const statusBattery = document.getElementById("statusBattery");
+            const statusNetwork = document.getElementById("statusNetwork");
+
+            if (statusCpu) statusCpu.innerText = cpu;
+            if (statusRam) statusRam.innerText = ram;
+            if (statusBattery) statusBattery.innerText = battery;
+            if (statusNetwork) statusNetwork.innerText = network;
+
+        }
+
+    </script>
+
+</body>
+</html>
